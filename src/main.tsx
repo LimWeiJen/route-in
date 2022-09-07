@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <Route path='/' element={<App />} />
         <Route path='/home' element={<Home />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/edit-tasks' element={<EditTasks />} />
+        <Route path='/edit-tasks/:id' element={<EditTasks />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

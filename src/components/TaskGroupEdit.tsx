@@ -1,8 +1,12 @@
 import React from 'react'
+import { TaskGroup } from '../interfaces'
 
-const TaskGroupEdit = () => {
+const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   return (
-    <div>TaskGroupEdit</div>
+    <div>
+      {data.name}
+      {data.id}
+    </div>
   )
 }
 
