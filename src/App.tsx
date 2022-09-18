@@ -1,36 +1,34 @@
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { auth, db } from './firebase';
 import './App.css'
-import { useEffect } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { User } from './interfaces';
 
 function App() {
-	auth.onAuthStateChanged((user) => {
+	auth.onAuthStateChanged(async (user) => {
 		if (!user) return;
 
 		// get user doc
-		getDoc(doc(db, 'users', user.uid)).then((res) => {
+		const userDoc = await getDoc(doc(db, 'users', user.uid));
 	
-			// if the doc does not exist, create a new doc for the user
-			if (!res.exists()) {
-				
-				// initialize a default user object
-				const newUser: User = {
-					taskGroups: [],
-					analytics: {
-						dateOfCreation: new Date(),
-						totalTasks: 0,
-						completionRateByDay: []
-					}
+		// if the doc does not exist, create a new doc for the user
+		if (!userDoc.exists()) {
+			
+			// initialize a default user object
+			const newUser: User = {
+				taskGroups: [],
+				analytics: {
+					dateOfCreation: new Date(),
+					totalTasks: 0,
+					completionRateByDay: []
 				}
-	
-				// add the user object to user doc
-				setDoc(doc(db, 'users', user.uid), newUser);
 			}
-	
-			location.href = '/home';
-		})
+
+			// add the user object to user doc
+			await setDoc(doc(db, 'users', user.uid), newUser);
+		}
+
+		location.href = '/home';
 	})
 
 

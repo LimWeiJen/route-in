@@ -22,15 +22,7 @@ const Navbar = () => {
       id: v4(),
       name: '',
       tasks: [],
-      dayOfAppearance: {
-        Monday: false,
-        Tuesday: false,
-        Wednesday: false,
-        Thursday: false,
-        Friday: false,
-        Saturday: false,
-        Sunday: false,
-      }
+      dayOfAppearance: [false, false, false, false, false, false, false]
     }
 
     // increment total tasks of user

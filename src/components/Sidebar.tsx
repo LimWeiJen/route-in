@@ -1,8 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Sidebar = () => {
   return (
-    <div>Sidebar</div>
+    <div>
+      <div>
+        <Link to={'/edit-tasks/default'}>Edit Tasks</Link>
+        <Link to={'/home'}>Home</Link>
+      </div>
+    </div>
   )
 }
 
