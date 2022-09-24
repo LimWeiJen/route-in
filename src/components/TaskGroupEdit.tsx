@@ -1,7 +1,6 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
-import React, { useRef, useState } from 'react'
-import { auth, db } from '../firebase';
-import { Task, TaskGroup, User } from '../interfaces'
+import React, { useContext, useRef, useState } from 'react'
+import { UserContext } from '../contexts/UserContext';
+import { Task, TaskGroup } from '../interfaces'
 
 const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   ////// VARIABLES //////
@@ -9,6 +8,8 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const [newTasks, setNewTasks] = useState(data.tasks);
   const [newDayOfAppearance, setNewDayOfAppearance] = useState(data.dayOfAppearance);
   const newTaskTitleInputRef = useRef<HTMLInputElement>(null);
+
+  const userContext = useContext(UserContext);
 
   ////// FUNCTIONS //////
   const addNewTask = () => {
@@ -52,27 +53,6 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
     setNewDayOfAppearance(d);
   }
 
-  const save = async () => {
-    if (!auth.currentUser) return;
-
-    // get user data
-    const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
-    const userData: User = JSON.parse(JSON.stringify(userDoc.data()));
-
-    // update the task group
-    userData.taskGroups.forEach((taskGroup) => {
-      if (taskGroup.id === data.id) {
-        taskGroup.dayOfAppearance = newDayOfAppearance;
-        taskGroup.name = newName;
-        taskGroup.tasks = newTasks;
-      }
-    })
-
-    // update the user document
-    await updateDoc(doc(db, 'users', auth.currentUser.uid), JSON.parse(JSON.stringify(userData)));
-    location.href = '/home';
-  }
-
   return (
     <div>
       <input type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
@@ -85,7 +65,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
       {newDayOfAppearance.map((e, i) => <div>
         <input type="checkbox" checked={e} onChange={() => updateDayOfAppearance(i)} />
       </div>)}
-      <button onClick={save}>save</button>
+      <button onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks)}>save</button>
     </div>
   )
 }
