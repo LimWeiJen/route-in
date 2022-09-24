@@ -11,8 +11,8 @@ const EditTasks = () => {
 
   const userContext = useContext(UserContext);
 
+  // get user's task group by id if the id is provided on load
   useEffect(() => {
-    // get user's task group by id if the id is provided
     const id = location.href.replace('http://localhost:3000/edit-tasks/', '');
     setCurrTaskGroup(userContext!.taskGroups?.filter((taskGroup) => taskGroup.id === id)[0]);
   })

@@ -31,14 +31,18 @@ function App() {
 		location.href = '/home';
 	})
 
-
-	const login = () => {
+	/**
+	 * @desc logs the user into the website
+	 * 
+	 * @returns void
+	 */
+	const _login = () => {
 		signInWithPopup(auth, new GoogleAuthProvider());
 	}
 
 	return (
 		<div>
-			<button onClick={login}>sign in</button>
+			<button onClick={_login}>sign in</button>
 		</div>
 	)
 }

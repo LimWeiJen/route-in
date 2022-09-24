@@ -1,8 +1,10 @@
-import { Task, TaskGroup } from ".";
+import { Analytics, Task, TaskGroup } from ".";
 
 
 export default interface UserContextInterface {
 	taskGroups?: Array<TaskGroup>,
+	analytics?: Analytics,
 	deleteTaskGroup: (taskGroupId: string) => Promise<void>,
-	saveTaskGroup: (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>) => Promise<void>
+	saveTaskGroup: (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>) => Promise<void>,
+  	addNewTaskGroup: () => Promise<void>
 }
