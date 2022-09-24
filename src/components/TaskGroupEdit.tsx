@@ -37,7 +37,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
     setNewTasks(t);
   }
 
-  const deleteExistingTask = (taskIndex: number) => {
+  const deleteExistingTask = async (taskIndex: number) => {
     setNewTasks(newTasks.filter((v, i) => i != taskIndex));
   }
 

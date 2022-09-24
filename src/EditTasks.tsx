@@ -1,4 +1,4 @@
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Sidebar, TaskGroupEdit } from './components';
@@ -24,6 +24,19 @@ const EditTasks = () => {
     setCurrTaskGroup(userData.taskGroups.filter((taskGroup) => taskGroup.id === id)[0]);
   })
 
+  const deleteTaskGroup = async (taskGroupId: string) => {
+    if (!auth.currentUser) return;
+
+    const newTaskGroups = taskGroups?.filter(taskGroup => taskGroup.id !== taskGroupId);
+    
+    // get user data
+    const userDoc = await getDoc(doc(db, 'users', auth.currentUser.uid));
+    const userData: User = JSON.parse(JSON.stringify(userDoc.data()));
+    userData.taskGroups = newTaskGroups!;
+
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), JSON.parse(JSON.stringify(userData)));
+  }
+
   return (
     <div>
       EditTasks
@@ -36,6 +49,7 @@ const EditTasks = () => {
               {taskGroup.name}<br />
               {taskGroup.tasks.length} tasks
             </Link>
+            <button onClick={() => deleteTaskGroup(taskGroup.id)}>delete</button>
           </div>)}
         </div> 
       }
