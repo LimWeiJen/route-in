@@ -16,7 +16,7 @@ const Home = () => {
         {taskGroup.tasks.map((task, j) => <div key={j}>
           {task.title}
           {task.completionRate}
-          <input type="checkbox" checked={task.checked} />
+          <input type="checkbox" checked={task.checked} onClick={() => userContext?.toggleChecked(taskGroup.id, j, !task.checked)} />
         </div>)}
       </div>)}
     </div>

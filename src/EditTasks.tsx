@@ -1,10 +1,8 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { Sidebar, TaskGroupEdit } from './components';
 import { UserContext } from './contexts/UserContext';
-import { auth, db } from './firebase';
-import { TaskGroup, User } from './interfaces';
+import { TaskGroup } from './interfaces';
 
 const EditTasks = () => {
   const [currTaskGroup, setCurrTaskGroup] = useState<TaskGroup>();

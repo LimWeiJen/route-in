@@ -99,13 +99,34 @@ export const UserProvider = ({children}: any) => {
     location.href = `edit-tasks/${emptyTaskGroup.id}`
   }
 
+  /**
+   * @desc checks or unchecks a specified task in a task group
+   * 
+   * @param taskGroupId the id of the task group to be modified
+   * @param taskIndex the index of the task in the task group to be modified
+   * @param checked the new value of checked for the task
+   * @returns void
+   */
+  const toggleChecked = async (taskGroupId: string, taskIndex: number, checked: boolean) => {
+    if (!auth.currentUser) return;
+
+    taskGroups!.forEach((taskGroup) => {
+      if (taskGroup.id === taskGroupId) {
+        taskGroup.tasks[taskIndex].checked = checked;
+      }
+    })
+
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), { taskGroups });
+  }
+
   return (
     <UserContext.Provider value={{
       taskGroups,
       analytics,
       deleteTaskGroup,
       saveTaskGroup,
-      addNewTaskGroup
+      addNewTaskGroup,
+      toggleChecked
     }}>
       {children}
     </UserContext.Provider>
