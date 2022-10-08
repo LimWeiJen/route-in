@@ -1,6 +1,6 @@
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { auth, db } from './firebase';
-import './App.css'
+import './styles/global.scss'
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { User } from './interfaces';
 

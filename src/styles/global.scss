@@ -1,0 +1,25 @@
+* {
+	margin: 0%;
+	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.ico-btn {
+	width: 2rem;
+	height: 2rem;
+	margin: 1rem;
+	color: #666666;
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.main {
+	display: flex;
+	height: 100%;
+}

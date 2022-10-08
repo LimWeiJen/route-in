@@ -6,7 +6,7 @@ import EditTasks from './EditTasks'
 import Home from './Home'
 import Profile from './Profile'
 import PageNotFound from './PageNotFound'
-import './index.css'
+import './styles/global.scss'
 import { UserProvider } from './contexts/UserContext'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -8,17 +8,19 @@ const Home = () => {
   const _getTodaysDay = () => new Date().getDay()
 
   return (
-    <div>
+    <div className='wrapper'>
       <Navbar />
-      <Sidebar />
-      {userContext!.taskGroups?.filter(taskGroup => taskGroup.dayOfAppearance[_getTodaysDay()]).map((taskGroup, i) => <div key={i}>
-        {taskGroup.name}
-        {taskGroup.tasks.map((task, j) => <div key={j}>
-          {task.title}
-          {task.completionRate}
-          <input type="checkbox" checked={task.checked} onClick={() => userContext?.toggleChecked(taskGroup.id, j, !task.checked)} />
+      <div className='main'>
+        <Sidebar />
+        {userContext!.taskGroups?.filter(taskGroup => taskGroup.dayOfAppearance[_getTodaysDay()]).map((taskGroup, i) => <div key={i}>
+          {taskGroup.name}
+          {taskGroup.tasks.map((task, j) => <div key={j}>
+            {task.title}
+            {task.completionRate}
+            <input type="checkbox" checked={task.checked} onClick={() => userContext?.toggleChecked(taskGroup.id, j, !task.checked)} />
+          </div>)}
         </div>)}
-      </div>)}
+      </div>
     </div>
   )
 }
