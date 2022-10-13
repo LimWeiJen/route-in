@@ -4,5 +4,6 @@ export default interface TaskGroup {
 	id: string,
 	name: string,
 	tasks: Array<Task>,
-	dayOfAppearance: Array<boolean>
+	dayOfAppearance: Array<boolean>,
+	color: string
 }

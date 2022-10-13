@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Sidebar, TaskGroupEdit } from './components';
+import { Sidebar, TaskGroupEdit, TaskGroupList } from './components';
 import { UserContext } from './contexts/UserContext';
 import { TaskGroup } from './interfaces';
 
@@ -21,15 +21,7 @@ const EditTasks = () => {
       <Sidebar />
       {currTaskGroup ? 
         <TaskGroupEdit data={currTaskGroup} /> : 
-        <div>
-          {userContext!.taskGroups?.map((taskGroup) => <div>
-            <Link to={`/edit-tasks/${taskGroup.id}`}>
-              {taskGroup.name}<br />
-              {taskGroup.tasks.length} tasks
-            </Link>
-            <button onClick={() => userContext!.deleteTaskGroup(taskGroup.id)}>delete</button>
-          </div>)}
-        </div> 
+        <TaskGroupList />
       }
     </div>
   )

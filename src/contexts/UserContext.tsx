@@ -12,7 +12,7 @@ export const UserProvider = ({children}: any) => {
 
   // gets the user's data when the user is signed in
   auth.onAuthStateChanged(async (user) => {
-    if (!user) return;
+    if (!user || taskGroups || analytics) return;
 
     const userDoc = await getDoc(doc(db, 'users', user.uid));
     const userData: User = JSON.parse(JSON.stringify(userDoc.data()));
@@ -50,7 +50,7 @@ export const UserProvider = ({children}: any) => {
    * 
    * @returns void
    */
-  const saveTaskGroup = async (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>) => {
+  const saveTaskGroup = async (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>, newColor: string) => {
     if (!auth.currentUser) return;
 
     // find the task group specified by the id and update it
@@ -59,6 +59,7 @@ export const UserProvider = ({children}: any) => {
         taskGroup.dayOfAppearance = newDayOfAppearance;
         taskGroup.name = newName;
         taskGroup.tasks = newTasks;
+        taskGroup.color = newColor;
       }
     })
 
@@ -80,7 +81,8 @@ export const UserProvider = ({children}: any) => {
       id: v4(),
       name: '',
       tasks: [],
-      dayOfAppearance: [false, false, false, false, false, false, false]
+      dayOfAppearance: [false, false, false, false, false, false, false],
+      color: '#fff'
     }
 
     // increment total tasks of user

@@ -6,6 +6,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const [newName, setNewName] = useState(data.name); // name of the task group
   const [newTasks, setNewTasks] = useState(data.tasks);
   const [newDayOfAppearance, setNewDayOfAppearance] = useState(data.dayOfAppearance);
+  const [newColor, setNewColor] = useState(data.color);
   const newTaskTitleInputRef = useRef<HTMLInputElement>(null);
 
   const userContext = useContext(UserContext);
@@ -23,6 +24,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
       checked: false
     }
 
+    
     // add the new task
     setNewTasks([...newTasks, newTask]);
 
@@ -88,6 +90,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   return (
     <div>
       <input type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
+      <input type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
       {newTasks.map((task, i) => <div>
         <input type="text" defaultValue={task.title} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
         <button onClick={() => deleteExistingTask(i)}>delete</button>
@@ -97,7 +100,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
       {newDayOfAppearance.map((e, i) => <div>
         <input type="checkbox" checked={e} onChange={() => updateDayOfAppearance(i)} />
       </div>)}
-      <button onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks)}>save</button>
+      <button onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks, newColor)}>save</button>
     </div>
   )
 }
