@@ -24,9 +24,9 @@ const Sidebar = () => {
       <Link to={'/edit-tasks/default'} className="btn">
         <User className='ico-btn' />
       </Link>
-      <Link to={'/edit-tasks/default'} className="btn">
+      <div className='btn' onClick={() => location.href="/edit-tasks/default"}>
         <Settings className='ico-btn' />
-      </Link>
+      </div>
       <div className='btn' onClick={_logout}>
         <LogOut className='ico-btn' />
       </div>

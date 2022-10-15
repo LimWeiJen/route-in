@@ -9,10 +9,10 @@ const TaskGroupList = () => {
   return (
     <div>
           {userContext!.taskGroups?.map((taskGroup) => <div>
-            <Link to={`/edit-tasks/${taskGroup.id}`}>
+            <div onClick={() => location.href=`/edit-tasks/${taskGroup.id}`}>
               {taskGroup.name}<br />
               {taskGroup.tasks.length} tasks
-            </Link>
+            </div>
             <button onClick={() => userContext!.deleteTaskGroup(taskGroup.id)}>delete</button>
           </div>)}
     </div>
