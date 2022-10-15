@@ -18,25 +18,17 @@ const Sidebar = () => {
   
   return (
     <div className='sidebar'>
-      <Link to={'/home'} className='btn'>
-        <div style={{backgroundColor: '#E73333'}} className='block'></div>
+      <Link to={'/home'} style={{backgroundColor: '#E73333'}} className='btn'>
         <Home className='ico-btn white' />
-        <p className='white'>Home</p>
       </Link>
       <Link to={'/edit-tasks/default'} className="btn">
-        <div className='block'></div>
         <User className='ico-btn' />
-        <p>Profile</p>
       </Link>
       <Link to={'/edit-tasks/default'} className="btn">
-        <div className='block'></div>
         <Settings className='ico-btn' />
-        <p>Settings</p>
       </Link>
       <div className='btn' onClick={_logout}>
-        <div className='block'></div>
         <LogOut className='ico-btn' />
-        <p>Log Out</p>
       </div>
     </div>
   )

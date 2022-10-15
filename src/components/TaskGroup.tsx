@@ -2,9 +2,9 @@ import { UserContext } from '../contexts/UserContext';
 import React, { useContext, useState } from 'react'
 import { TaskGroup as TaskGroupInterface } from '../interfaces'
 import '../styles/taskgroup.scss'
+import Checkbox from './Checkbox';
 
 const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
-  const userContext = useContext(UserContext);
   return (
     <div className='tasks'>
 	{taskGroup.tasks.map((task, j) => <div key={j}>
@@ -18,7 +18,7 @@ const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
 			<div className='completion-rate'>
 				{task.completionRate}
 			</div>
-			<input type="checkbox" checked={task.checked} onClick={() => userContext?.toggleChecked(taskGroup.id, j, !task.checked)} />
+			<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
 		</div>
 	</div>)}
     </div>

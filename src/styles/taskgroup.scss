@@ -1,7 +1,7 @@
 .tasks {
 	background-color: white;
 	border-radius: 0 10px 10px 10px;
-	box-shadow: 0px 4px 10px 1px #00000063;
+	box-shadow: 0px 4px 10px 1px #0000001e;
 	display: flex;
 	flex-direction: column;
 	div {
@@ -23,6 +23,14 @@
 		align-items: center;
 		.completion-rate {
 			margin: 1rem;
+		}
+	}
+
+	.check-box {
+		transition: all 100ms ease-in-out;
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.2);
 		}
 	}
 }
