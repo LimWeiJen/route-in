@@ -3,7 +3,7 @@
 	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.ico-btn {
+.nav-btn {
 	width: 2rem;
 	height: 2rem;
 	margin: 1rem;
@@ -11,6 +11,15 @@
 	&:hover {
 		cursor: pointer;
 	}
+}
+
+.ico-btn {
+
+		transition: all 100ms ease-in-out;
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.2);
+		}
 }
 
 .wrapper {

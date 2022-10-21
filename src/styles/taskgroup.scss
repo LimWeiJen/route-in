@@ -25,12 +25,4 @@
 			margin: 1rem;
 		}
 	}
-
-	.check-box {
-		transition: all 100ms ease-in-out;
-		&:hover {
-			cursor: pointer;
-			transform: scale(1.2);
-		}
-	}
 }

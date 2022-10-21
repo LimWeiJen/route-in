@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { Sidebar, TaskGroupEdit, TaskGroupList } from './components';
+import { Navbar, Sidebar, TaskGroupEdit, TaskGroupList } from './components';
 import { UserContext } from './contexts/UserContext';
 import { TaskGroup } from './interfaces';
 
@@ -16,13 +16,15 @@ const EditTasks = () => {
   })
 
   return (
-    <div>
-      EditTasks
-      <Sidebar />
-      {currTaskGroup ? 
-        <TaskGroupEdit data={currTaskGroup} /> : 
-        <TaskGroupList />
-      }
+    <div className='wrapper'>
+      <Navbar />
+      <div className='main'>
+        <Sidebar />
+        {currTaskGroup ? 
+          <TaskGroupEdit data={currTaskGroup} /> : 
+          <TaskGroupList />
+        }
+      </div>
     </div>
   )
 }

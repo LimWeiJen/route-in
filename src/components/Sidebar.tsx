@@ -19,16 +19,16 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <Link to={'/home'} style={{backgroundColor: '#E73333'}} className='btn'>
-        <Home className='ico-btn white' />
+        <Home className='nav-btn white' />
       </Link>
       <Link to={'/edit-tasks/default'} className="btn">
-        <User className='ico-btn' />
+        <User className='nav-btn' />
       </Link>
       <div className='btn' onClick={() => location.href="/edit-tasks/default"}>
-        <Settings className='ico-btn' />
+        <Settings className='nav-btn' />
       </div>
       <div className='btn' onClick={_logout}>
-        <LogOut className='ico-btn' />
+        <LogOut className='nav-btn' />
       </div>
     </div>
   )

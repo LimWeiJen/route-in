@@ -1,6 +1,8 @@
 import React, { useContext, useRef, useState } from 'react'
 import { UserContext } from '../contexts/UserContext';
 import { Task, TaskGroup } from '../interfaces'
+import { Trash, PlusCircle, Save, Pocket } from 'react-feather';
+import '../styles/taskgroupedit.scss'
 
 const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const [newName, setNewName] = useState(data.name); // name of the task group
@@ -10,6 +12,8 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const newTaskTitleInputRef = useRef<HTMLInputElement>(null);
 
   const userContext = useContext(UserContext);
+
+  const _dayStr = ["S", "M", "T", "W", "T", "F", "S"];
 
   /**
    * @desc adds a new empty task to the task group
@@ -88,19 +92,36 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   }
 
   return (
-    <div>
-      <input type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
-      <input type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
-      {newTasks.map((task, i) => <div>
-        <input type="text" defaultValue={task.title} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
-        <button onClick={() => deleteExistingTask(i)}>delete</button>
-      </div>)}
-      <input type="text" placeholder='new task' ref={newTaskTitleInputRef} />
-      <button onClick={_addNewTask}>add new task</button>
-      {newDayOfAppearance.map((e, i) => <div>
-        <input type="checkbox" checked={e} onChange={() => updateDayOfAppearance(i)} />
-      </div>)}
-      <button onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks, newColor)}>save</button>
+    <div className='task-group-edit'>
+      <div className='title-edit'>
+        <input style={{backgroundColor: newColor}} className='title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
+        <input className='color' type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
+      </div>
+      <div className='tasks-edit'>
+        {newTasks.map((task, i) => <div className='task-edit'>
+          <div className='left'>
+            <div className='square' style={{backgroundColor: newColor}}></div>
+            <input type="text" defaultValue={task.title} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
+          </div>
+          <Trash className='right delete-btn ico-btn' onClick={() => deleteExistingTask(i)} />
+        </div>)}
+        <div className='new-task'>
+          <input type="text" placeholder='new task' ref={newTaskTitleInputRef} />
+          <div className='new-task-btn' onClick={_addNewTask}>
+            <PlusCircle />
+            <p>New Task</p>
+          </div>
+        </div>
+      </div>
+      <div className='date-edit'>
+        <p>I NEED TO COMPLETE ALL THE TASKS ABOVE ON EVERY</p>
+        <div className='dates'>
+          {newDayOfAppearance.map((e, i) => <div>
+            <button className={`date-btn ${e ? 'checked' : ''}`} onClick={() => updateDayOfAppearance(i)}>{_dayStr[i]}</button>
+          </div>)}
+        </div>
+        <Pocket className='ico-btn' onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks, newColor)} />
+      </div>
     </div>
   )
 }

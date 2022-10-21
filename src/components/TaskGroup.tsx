@@ -7,20 +7,20 @@ import Checkbox from './Checkbox';
 const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
   return (
     <div className='tasks'>
-	{taskGroup.tasks.map((task, j) => <div key={j}>
-		<div className='left'>
-			<div className='square' style={{backgroundColor: taskGroup.color}}></div>
-			<div className='task-title'>
-				{task.title}
-			</div>
-		</div>
-		<div className='right'>
-			<div className='completion-rate'>
-				{task.completionRate}
-			</div>
-			<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
-		</div>
-	</div>)}
+			{taskGroup.tasks.map((task, j) => <div key={j}>
+				<div className='left'>
+					<div className='square' style={{backgroundColor: taskGroup.color}}></div>
+					<div className='task-title'>
+						{task.title}
+					</div>
+				</div>
+				<div className='right'>
+					<div className='completion-rate'>
+						{task.completionRate}
+					</div>
+					<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
+				</div>
+			</div>)}
     </div>
   )
 }

@@ -16,7 +16,7 @@ const Navbar = () => {
         <h1>RouteIn</h1>
       </div>
       <div className='navbar-right'>
-        <PlusCircle className='ico-btn' onClick={userContext?.addNewTaskGroup} />
+        <PlusCircle className='nav-btn' onClick={userContext?.addNewTaskGroup} />
         <img src={auth.currentUser?.photoURL || ''} />
       </div>
     </div>
