@@ -1,5 +1,5 @@
 export default interface Analytics {
-	dateOfCreation: Date,
+	dateOfCreation: number,
 	totalTasks: number,
 	completionRateByDay: Array<number>
 }

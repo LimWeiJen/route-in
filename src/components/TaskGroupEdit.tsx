@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react'
 import { UserContext } from '../contexts/UserContext';
 import { Task, TaskGroup } from '../interfaces'
-import { Trash, PlusCircle, Save, Pocket } from 'react-feather';
+import { Trash, PlusCircle, Pocket } from 'react-feather';
 import '../styles/taskgroupedit.scss'
 
 const TaskGroupEdit = ({data}: {data: TaskGroup}) => {

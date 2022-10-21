@@ -1,4 +1,4 @@
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import React, { createContext, useState } from 'react'
 import { v4 } from 'uuid';
 import { auth, db } from '../firebase';
@@ -15,7 +15,17 @@ export const UserProvider = ({children}: any) => {
     if (!user || taskGroups || analytics) return;
 
     const userDoc = await getDoc(doc(db, 'users', user.uid));
-    const userData: User = JSON.parse(JSON.stringify(userDoc.data()));
+    let userData: User = JSON.parse(JSON.stringify(userDoc.data()));
+
+    if (_diffBtwDates(new Date(userData.analytics.dateOfCreation), new Date()) !== userData.lastLogInDay) {
+      userData.taskGroups.forEach(taskGroup => {
+        taskGroup.tasks.forEach(task => {
+          task.checked = false;
+        })
+      })
+  
+      await setDoc(doc(db, 'users', user.uid), userData);
+    }
 
     setTaskGroups(userData.taskGroups);
     setAnalytics(userData.analytics);
@@ -120,6 +130,12 @@ export const UserProvider = ({children}: any) => {
 
     await updateDoc(doc(db, 'users', auth.currentUser.uid), { taskGroups });
   }
+
+  const _diffBtwDates = (date1: Date, date2: Date) => {
+		if (!date1) return 0;
+		const diff = Math.abs(date2.getTime() - new Date(date1).getTime());
+		return Math.ceil(diff / (1000 * 3600 * 24));
+	}
 
   return (
     <UserContext.Provider value={{
