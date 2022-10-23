@@ -9,6 +9,7 @@ export const UserContext = createContext<UserContextInterface | null>(null);
 export const UserProvider = ({children}: any) => {
   const [taskGroups, setTaskGroups] = useState<Array<TaskGroup>>();
   const [analytics, setAnalytics] = useState<Analytics>();
+  const [totalDaysPassed, setTotalDaysPassed] = useState(0);
 
   // gets the user's data when the user is signed in
   auth.onAuthStateChanged(async (user) => {
@@ -17,16 +18,30 @@ export const UserProvider = ({children}: any) => {
     const userDoc = await getDoc(doc(db, 'users', user.uid));
     let userData: User = JSON.parse(JSON.stringify(userDoc.data()));
 
+    // if it is the first time login for today
     if (_diffBtwDates(new Date(userData.analytics.dateOfCreation), new Date()) !== userData.lastLogInDay) {
+      let totalTaskCompleted = 0;
+      let totalTasks = 0;
+
+      // leave all tasks unchecked
       userData.taskGroups.forEach(taskGroup => {
+        totalTasks += taskGroup.tasks.length;
         taskGroup.tasks.forEach(task => {
+          if (task.checked = true) totalTaskCompleted++;
           task.checked = false;
         })
       })
-  
+
+      if (totalTasks == 0) totalTasks = 1;
+      userData.analytics.completionRateByDay.push(totalTaskCompleted / totalTasks * 100);
+
+      // declare today's login
+      userData.lastLogInDay = _diffBtwDates(new Date(userData.analytics.dateOfCreation), new Date());
+
       await setDoc(doc(db, 'users', user.uid), userData);
     }
 
+    setTotalDaysPassed(userData.lastLogInDay);
     setTaskGroups(userData.taskGroups);
     setAnalytics(userData.analytics);
   })
@@ -95,9 +110,6 @@ export const UserProvider = ({children}: any) => {
       color: '#fff'
     }
 
-    // increment total tasks of user
-    setAnalytics({...analytics!, totalTasks: analytics?.totalTasks! + 1});
-
     // add the new empty task to the task group
     const newTaskGroups = taskGroups;
     newTaskGroups?.push(emptyTaskGroup);
@@ -125,6 +137,9 @@ export const UserProvider = ({children}: any) => {
     taskGroups!.forEach((taskGroup) => {
       if (taskGroup.id === taskGroupId) {
         taskGroup.tasks[taskIndex].checked = checked;
+        let newCompletionRate = taskGroup.tasks[taskIndex].completionRate;
+        newCompletionRate = (((newCompletionRate / 100 * totalDaysPassed) + 1) / totalDaysPassed) * 100;
+        taskGroup.tasks[taskIndex].completionRate = newCompletionRate;
       }
     })
 
@@ -144,7 +159,8 @@ export const UserProvider = ({children}: any) => {
       deleteTaskGroup,
       saveTaskGroup,
       addNewTaskGroup,
-      toggleChecked
+      toggleChecked,
+      totalDaysPassed
     }}>
       {children}
     </UserContext.Provider>

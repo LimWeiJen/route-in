@@ -6,6 +6,7 @@ export default interface UserContextInterface {
 	analytics?: Analytics,
 	deleteTaskGroup: (taskGroupId: string) => Promise<void>,
 	saveTaskGroup: (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>, newColor: string) => Promise<void>,
-  	addNewTaskGroup: () => Promise<void>
-	toggleChecked: (taskGroupId: string, taskIndex: number, checked: boolean) => Promise<void>
+  	addNewTaskGroup: () => Promise<void>,
+	toggleChecked: (taskGroupId: string, taskIndex: number, checked: boolean) => Promise<void>,
+	totalDaysPassed: number
 }

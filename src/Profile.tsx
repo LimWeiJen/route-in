@@ -1,8 +1,17 @@
 import React from 'react'
+import { Navbar, Sidebar, Analytics } from './components'
 
 const Profile = () => {
+  
+
   return (
-    <div>Profile</div>
+    <div className='wrapper'>
+      <Navbar />
+      <div className='main'>
+        <Sidebar />
+        <Analytics />
+      </div>
+    </div>
   )
 }
 
