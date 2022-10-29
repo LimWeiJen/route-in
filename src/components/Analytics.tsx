@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
-import { Analytics as AnalyticsInterface } from '../interfaces'
 import { UserContext } from '../contexts/UserContext';
 import CompletionRateGraph from './CompletionRateGraph';
-
 
 const Analytics = () => {
   const userContext = useContext(UserContext);

@@ -1,6 +1,5 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext';
-import { Link } from 'react-router-dom'
 import '../styles/taskgrouplist.scss'
 import { Trash } from 'react-feather';
 

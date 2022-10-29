@@ -9,7 +9,6 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const [newTasks, setNewTasks] = useState(data.tasks);
   const [newDayOfAppearance, setNewDayOfAppearance] = useState(data.dayOfAppearance);
   const [newColor, setNewColor] = useState(data.color);
-  const newTaskTitleInputRef = useRef<HTMLInputElement>(null);
 
   const userContext = useContext(UserContext);
 
@@ -23,17 +22,15 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   const _addNewTask = () => {
     // initialize an empty task
     const newTask: Task = {
-      title: newTaskTitleInputRef.current?.value || '',
-      completionRate: 0,
+      title: '',
+      totalCompletionDay: 0,
+      totalDay: 0,
       checked: false
     }
 
     
     // add the new task
     setNewTasks([...newTasks, newTask]);
-
-    // reset the task title input
-    if (newTaskTitleInputRef.current) newTaskTitleInputRef.current.value = "";
   }
 
   /**
@@ -101,12 +98,13 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
         {newTasks.map((task, i) => <div className='task-edit'>
           <div className='left'>
             <div className='square' style={{backgroundColor: newColor}}></div>
-            <input type="text" defaultValue={task.title} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
+            <input type="text" defaultValue={task.title} onKeyDown={e => {
+              if (e.key === 'Enter') _addNewTask();
+            }} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
           </div>
           <Trash className='right delete-btn ico-btn' onClick={() => deleteExistingTask(i)} />
         </div>)}
         <div className='new-task'>
-          <input type="text" placeholder='new task' ref={newTaskTitleInputRef} />
           <div className='new-task-btn' onClick={_addNewTask}>
             <PlusCircle />
             <p>New Task</p>

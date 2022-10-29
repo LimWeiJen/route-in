@@ -20,7 +20,6 @@ function App() {
 				taskGroups: [],
 				analytics: {
 					dateOfCreation: new Date().getTime(),
-					totalTasks: 0,
 					completionRateByDay: []
 				}
 			}

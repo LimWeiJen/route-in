@@ -5,8 +5,8 @@ import '../styles/taskgroup.scss'
 import Checkbox from './Checkbox';
 
 const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
-  return (
-    <div className='tasks'>
+	return (
+		<div className='tasks'>
 			{taskGroup.tasks.map((task, j) => <div key={j}>
 				<div className='left'>
 					<div className='square' style={{backgroundColor: taskGroup.color}}></div>
@@ -16,13 +16,13 @@ const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
 				</div>
 				<div className='right'>
 					<div className='completion-rate'>
-						{task.completionRate}
+						{task.totalCompletionDay / task.totalDay * 100 || 0}
 					</div>
 					<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
 				</div>
 			</div>)}
-    </div>
-  )
+		</div>
+	)
 }
 
 export default TaskGroup

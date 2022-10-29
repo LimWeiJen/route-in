@@ -17,30 +17,6 @@ export const UserProvider = ({children}: any) => {
 
     const userDoc = await getDoc(doc(db, 'users', user.uid));
     let userData: User = JSON.parse(JSON.stringify(userDoc.data()));
-
-    // if it is the first time login for today
-    if (_diffBtwDates(new Date(userData.analytics.dateOfCreation), new Date()) !== userData.lastLogInDay) {
-      let totalTaskCompleted = 0;
-      let totalTasks = 0;
-
-      // leave all tasks unchecked
-      userData.taskGroups.forEach(taskGroup => {
-        totalTasks += taskGroup.tasks.length;
-        taskGroup.tasks.forEach(task => {
-          if (task.checked = true) totalTaskCompleted++;
-          task.checked = false;
-        })
-      })
-
-      if (totalTasks == 0) totalTasks = 1;
-      userData.analytics.completionRateByDay.push(totalTaskCompleted / totalTasks * 100);
-
-      // declare today's login
-      userData.lastLogInDay = _diffBtwDates(new Date(userData.analytics.dateOfCreation), new Date());
-
-      await setDoc(doc(db, 'users', user.uid), userData);
-    }
-
     setTotalDaysPassed(userData.lastLogInDay);
     setTaskGroups(userData.taskGroups);
     setAnalytics(userData.analytics);
@@ -63,6 +39,8 @@ export const UserProvider = ({children}: any) => {
     await updateDoc(doc(db, 'users', auth.currentUser.uid), JSON.parse(JSON.stringify({
       taskGroups: newTaskGroups
     })));
+
+    location.reload();
   }
  
   /**
@@ -137,20 +115,11 @@ export const UserProvider = ({children}: any) => {
     taskGroups!.forEach((taskGroup) => {
       if (taskGroup.id === taskGroupId) {
         taskGroup.tasks[taskIndex].checked = checked;
-        let newCompletionRate = taskGroup.tasks[taskIndex].completionRate;
-        newCompletionRate = (((newCompletionRate / 100 * totalDaysPassed) + 1) / totalDaysPassed) * 100;
-        taskGroup.tasks[taskIndex].completionRate = newCompletionRate;
       }
     })
 
     await updateDoc(doc(db, 'users', auth.currentUser.uid), { taskGroups });
   }
-
-  const _diffBtwDates = (date1: Date, date2: Date) => {
-		if (!date1) return 0;
-		const diff = Math.abs(date2.getTime() - new Date(date1).getTime());
-		return Math.ceil(diff / (1000 * 3600 * 24));
-	}
 
   return (
     <UserContext.Provider value={{
