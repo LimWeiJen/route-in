@@ -89,36 +89,38 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
   }
 
   return (
-    <div className='task-group-edit'>
-      <div className='title-edit'>
-        <input style={{backgroundColor: newColor}} className='title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
-        <input className='color' type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
-      </div>
-      <div className='tasks-edit'>
-        {newTasks.map((task, i) => <div className='task-edit'>
-          <div className='left'>
-            <div className='square' style={{backgroundColor: newColor}}></div>
-            <input type="text" defaultValue={task.title} onKeyDown={e => {
-              if (e.key === 'Enter') _addNewTask();
-            }} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
-          </div>
-          <Trash className='right delete-btn ico-btn' onClick={() => deleteExistingTask(i)} />
-        </div>)}
-        <div className='new-task'>
-          <div className='new-task-btn' onClick={_addNewTask}>
-            <PlusCircle />
-            <p>New Task</p>
+    <div className='wrapper'>
+      <div>
+        <div className='title-container'>
+          <input style={{backgroundColor: newColor}} className='title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
+          <input className='color' type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
+        </div>
+        <div className='tasks-container'>
+          {newTasks.map((task, i) => <div className='task'>
+            <div className='left'>
+              <div className='square' style={{backgroundColor: newColor}}></div>
+              <input type="text" defaultValue={task.title} onKeyDown={e => {
+                if (e.key === 'Enter') _addNewTask();
+              }} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
+            </div>
+            <Trash className='right btn' style={{color: '#E73333'}} onClick={() => deleteExistingTask(i)} />
+          </div>)}
+          <div className='new-task-btn-container'>
+            <div className='new-task-btn' onClick={_addNewTask}>
+              <PlusCircle />
+              <p>New Task</p>
+            </div>
           </div>
         </div>
       </div>
-      <div className='date-edit'>
+      <div className='date-container'>
         <p>I NEED TO COMPLETE ALL THE TASKS ABOVE ON EVERY</p>
         <div className='dates'>
           {newDayOfAppearance.map((e, i) => <div>
             <button className={`date-btn ${e ? 'checked' : ''}`} onClick={() => updateDayOfAppearance(i)}>{_dayStr[i]}</button>
           </div>)}
         </div>
-        <Pocket className='ico-btn' onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks, newColor)} />
+        <Pocket className='btn' onClick={() => userContext!.saveTaskGroup(data.id, newDayOfAppearance, newName, newTasks, newColor)} />
       </div>
     </div>
   )

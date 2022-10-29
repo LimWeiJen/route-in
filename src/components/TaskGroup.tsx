@@ -6,8 +6,8 @@ import Checkbox from './Checkbox';
 
 const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
 	return (
-		<div className='tasks'>
-			{taskGroup.tasks.map((task, j) => <div key={j}>
+		<div>
+			{taskGroup.tasks.map((task, j) => <div key={j} className='task'>
 				<div className='left'>
 					<div className='square' style={{backgroundColor: taskGroup.color}}></div>
 					<div className='task-title'>

@@ -16,15 +16,15 @@ const EditTasks = () => {
   })
 
   return (
-    <div className='wrapper'>
+    <div>
       <Navbar />
-      <div className='main'>
+      <main>
         <Sidebar />
         {currTaskGroup ? 
           <TaskGroupEdit data={currTaskGroup} /> : 
           <TaskGroupList />
         }
-      </div>
+      </main>
     </div>
   )
 }

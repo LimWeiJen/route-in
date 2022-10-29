@@ -13,12 +13,12 @@ const Checkbox = ({defaultChecked, taskGroupId, taskIndex}: {defaultChecked: boo
 	}
 
 	return (
-    <div className='ico-btn' onClick={toggleChecked}>
-			{checked ? <div>
-				<CheckCircle style={{color: 'green'}} />
-			</div> : <div>
-				<Circle />
-			</div>}
+    <div className='btn' onClick={toggleChecked}>
+	{checked ? <div>
+		<CheckCircle style={{color: 'green'}} />
+	</div> : <div>
+		<Circle />
+	</div>}
     </div>
   )
 }

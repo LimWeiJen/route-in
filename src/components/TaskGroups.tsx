@@ -9,9 +9,9 @@ const TaskGroups = () => {
   const _getTodaysDay = () => new Date().getDay()
 	
   return (
-	<div className='task-groups'>
-		{userContext!.taskGroups?.filter(taskGroup => taskGroup.dayOfAppearance[_getTodaysDay()]).map((taskGroup, i) => <div key={i}>
-				<div className='task-group-name' style={{backgroundColor: taskGroup.color}}>{taskGroup.name.toUpperCase()}</div>
+	<div className='wrapper'>
+		{userContext!.taskGroups?.filter(taskGroup => taskGroup.dayOfAppearance[_getTodaysDay()]).map((taskGroup, i) => <div className='task-group-container' key={i}>
+				<div className='title' style={{backgroundColor: taskGroup.color}}>{taskGroup.name.toUpperCase()}</div>
 				<div className='tasks'>
 					<TaskGroup taskGroup={taskGroup} />
 				</div>

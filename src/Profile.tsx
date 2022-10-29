@@ -5,12 +5,12 @@ const Profile = () => {
   
 
   return (
-    <div className='wrapper'>
+    <div>
       <Navbar />
-      <div className='main'>
+      <main>
         <Sidebar />
         <Analytics />
-      </div>
+      </main>
     </div>
   )
 }

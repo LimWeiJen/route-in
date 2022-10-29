@@ -1,13 +1,7 @@
-.tasks {
-	background-color: white;
-	border-radius: 0 10px 10px 10px;
-	box-shadow: 0px 4px 10px 1px #0000001e;
+.task {
 	display: flex;
-	flex-direction: column;
-	div {
-		display: flex;
-		justify-content: space-between;
-	}
+	justify-content: space-between;
+	padding: 0.5rem;
 	.left {
 		display: flex;
 		align-items: center;			

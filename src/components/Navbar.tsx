@@ -11,11 +11,11 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <div className='navbar-left'>
+      <div className='left'>
         <img src={logo} />
         <h1>RouteIn</h1>
       </div>
-      <div className='navbar-right'>
+      <div className='right'>
         <PlusCircle className='nav-btn' onClick={userContext?.addNewTaskGroup} />
         <img src={auth.currentUser?.photoURL || ''} />
       </div>

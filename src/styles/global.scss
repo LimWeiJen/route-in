@@ -3,17 +3,7 @@
 	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.nav-btn {
-	width: 2rem;
-	height: 2rem;
-	margin: 1rem;
-	color: #666666;
-	&:hover {
-		cursor: pointer;
-	}
-}
-
-.ico-btn {
+.btn {
 
 		transition: all 100ms ease-in-out;
 		&:hover {
@@ -25,10 +15,26 @@
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: calc(100vh - 7rem);
+	margin: 1rem;
+	width: calc(100vw - 10rem);
 }
 
-.main {
+.container {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0px 4px 10px 1px #0000001e;
+	display: flex;
+	flex-direction: column;
+}
+
+input {
+	border: none;
+	outline: none;
+	background-color: transparent;
+}
+
+main {
 	display: flex;
 	height: 100%;
 }

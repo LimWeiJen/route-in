@@ -1,25 +1,26 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext';
 import '../styles/taskgrouplist.scss'
+import '../styles/taskgroup.scss';
 import { Trash } from 'react-feather';
 
 const TaskGroupList = () => {
   const userContext = useContext(UserContext);
   
   return (
-    <div className='task-group-list'>
-          {userContext!.taskGroups?.map((taskGroup) => <div className='task-group-preview'>
+    <div className='wrapper container'>
+          {userContext!.taskGroups?.map((taskGroup) => <div className='task'>
             <div className='left' onClick={() => location.href=`/edit-tasks/${taskGroup.id}`}>
-              <div className='block' style={{backgroundColor: `${taskGroup.color}`}}></div>
+              <div className='square' style={{backgroundColor: `${taskGroup.color}`}}></div>
               <div>
                 {taskGroup.name.toUpperCase()}
               </div>
             </div>
             <div className='right'>
-              <div className='total-tasks'>
+              <div className='completion-rate'>
                 {taskGroup.tasks.length} tasks
               </div>
-              <Trash className='ico-btn delete-btn' onClick={() => userContext!.deleteTaskGroup(taskGroup.id)} />
+              <Trash className='btn' style={{color: '#E73333'}} onClick={() => userContext!.deleteTaskGroup(taskGroup.id)} />
             </div>
           </div>)}
     </div>
