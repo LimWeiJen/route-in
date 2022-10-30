@@ -3,8 +3,9 @@ import { auth } from '../firebase'
 import React, { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
 import '../styles/navbar.scss'
-import { PlusCircle } from 'react-feather'
+import { PlusCircle, ToggleLeft } from 'react-feather'
 import logo from '../images/Routine Tracker.svg'
+import logoDark from '../images/Routine Tracker Dark.svg'
 
 const Navbar = () => {
   const userContext = useContext(UserContext);
@@ -12,11 +13,12 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <div className='left'>
-        <img src={logo} />
+        <img src={userContext?.theme === 'light' ? logo : logoDark} />
         <h1>RouteIn</h1>
       </div>
       <div className='right'>
-        <PlusCircle className='nav-btn' onClick={userContext?.addNewTaskGroup} />
+        <PlusCircle className='nav-btn ico' onClick={userContext?.addNewTaskGroup} />
+        <ToggleLeft className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext.theme === 'light' ? 'dark' : 'light')} />
         <img src={auth.currentUser?.photoURL || ''} />
       </div>
     </div>

@@ -16,7 +16,7 @@ const EditTasks = () => {
   })
 
   return (
-    <div>
+    <div className={userContext?.theme}>
       <Navbar />
       <main>
         <Sidebar />

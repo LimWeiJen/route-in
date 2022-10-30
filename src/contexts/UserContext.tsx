@@ -10,6 +10,7 @@ export const UserProvider = ({children}: any) => {
   const [taskGroups, setTaskGroups] = useState<Array<TaskGroup>>();
   const [analytics, setAnalytics] = useState<Analytics>();
   const [totalDaysPassed, setTotalDaysPassed] = useState(0);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   // gets the user's data when the user is signed in
   auth.onAuthStateChanged(async (user) => {
@@ -20,6 +21,7 @@ export const UserProvider = ({children}: any) => {
     setTotalDaysPassed(userData.lastLogInDay);
     setTaskGroups(userData.taskGroups);
     setAnalytics(userData.analytics);
+    setTheme(userData.theme);
   })
   
   /**
@@ -121,6 +123,18 @@ export const UserProvider = ({children}: any) => {
     await updateDoc(doc(db, 'users', auth.currentUser.uid), { taskGroups });
   }
 
+  /**
+   * @desc switch the user's preferred theme
+   * 
+   * @param newTheme the new theme set by the user
+   * @returns void
+   */
+  const switchTheme = async (newTheme: 'light' | 'dark') => {
+    if (!auth.currentUser) return;
+    setTheme(newTheme);
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), { theme: newTheme });
+  }
+
   return (
     <UserContext.Provider value={{
       taskGroups,
@@ -129,7 +143,9 @@ export const UserProvider = ({children}: any) => {
       saveTaskGroup,
       addNewTaskGroup,
       toggleChecked,
-      totalDaysPassed
+      totalDaysPassed,
+      theme,
+      switchTheme,
     }}>
       {children}
     </UserContext.Provider>

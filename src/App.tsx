@@ -17,6 +17,7 @@ function App() {
 			// initialize a default user object
 			const newUser: User = {
 				lastLogInDay: 0,
+				theme: 'light',
 				taskGroups: [],
 				analytics: {
 					dateOfCreation: new Date().getTime(),

@@ -15,8 +15,8 @@ const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
 					</div>
 				</div>
 				<div className='right'>
-					<div className='completion-rate'>
-						{task.totalCompletionDay / task.totalDay * 100 || 0}
+					<div className='completion-rate text-secondary'>
+						{(task.totalCompletionDay / task.totalDay * 100).toFixed(2) || 0}
 					</div>
 					<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
 				</div>

@@ -1,3 +1,5 @@
+@import './base/reset';
+
 .title-container {
 	.title {
 		font-size: 1rem;
@@ -37,11 +39,8 @@
 		border-radius: 10px;
 		justify-content: center;
 		padding: 1rem 0;
-		background-color: #D9D9D9;
-		color: #666666;
 		&:hover {
 			cursor: pointer;
-			background-color: #afafaf;
 		}
 		p {
 			margin-left: 0.3rem;
@@ -62,7 +61,7 @@
 				border-radius: 100%;
 				width: 2.5rem;
 				height: 2.5rem;
-				background-color: white;
+				background-color: transparent;
 				border: none;
 				outline: none;
 				&:hover {

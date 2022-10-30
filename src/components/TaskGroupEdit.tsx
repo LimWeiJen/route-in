@@ -95,7 +95,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
           <input style={{backgroundColor: newColor}} className='title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
           <input className='color' type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
         </div>
-        <div className='tasks-container'>
+        <div className='tasks-container container-secondary'>
           {newTasks.map((task, i) => <div className='task'>
             <div className='left'>
               <div className='square' style={{backgroundColor: newColor}}></div>

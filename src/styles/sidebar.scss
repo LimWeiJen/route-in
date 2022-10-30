@@ -1,3 +1,5 @@
+@import './base/reset';
+
 .sidebar {
 	display: flex;
 	height: calc(100vh - 7rem);
@@ -24,9 +26,5 @@
 			background-color: #0000002f;
 			cursor: pointer;
 		}
-	}
-	
-	.white {
-		color: white;
 	}
 }

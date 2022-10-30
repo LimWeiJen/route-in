@@ -1,6 +1,5 @@
 import { Analytics, Task, TaskGroup } from ".";
 
-
 export default interface UserContextInterface {
 	taskGroups?: Array<TaskGroup>,
 	analytics?: Analytics,
@@ -8,5 +7,7 @@ export default interface UserContextInterface {
 	saveTaskGroup: (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>, newColor: string) => Promise<void>,
   	addNewTaskGroup: () => Promise<void>,
 	toggleChecked: (taskGroupId: string, taskIndex: number, checked: boolean) => Promise<void>,
-	totalDaysPassed: number
+	switchTheme: (newTheme: 'light' | 'dark') => Promise<void>,
+	totalDaysPassed: number,
+	theme: 'light' | 'dark',
 }

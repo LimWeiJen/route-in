@@ -17,7 +17,7 @@ const TaskGroupList = () => {
               </div>
             </div>
             <div className='right'>
-              <div className='completion-rate'>
+              <div className='completion-rate text-secondary'>
                 {taskGroup.tasks.length} tasks
               </div>
               <Trash className='btn' style={{color: '#E73333'}} onClick={() => userContext!.deleteTaskGroup(taskGroup.id)} />
