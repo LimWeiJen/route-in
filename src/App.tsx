@@ -3,6 +3,9 @@ import { auth, db } from './firebase';
 import './styles/global.scss'
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { User } from './interfaces';
+import './styles/homepage.scss'
+import logo from './images/Routine Tracker.svg'
+import backgroundImg from './images/Background Image.svg'
 
 function App() {
 	auth.onAuthStateChanged(async (user) => {
@@ -42,8 +45,54 @@ function App() {
 	}
 
 	return (
-		<div>
-			<button onClick={_login}>sign in</button>
+		<div className='background'>
+			<img className='bg-img' src={backgroundImg} alt="" />
+			<div className='navbar'>
+				<div className='left'>
+					<img src={logo} />
+					<h1>RouteIn</h1>
+				</div>
+				<div className='right'>
+					<button onClick={_login}>Log In</button>
+				</div>
+			</div>
+			<div className='heading'>
+				<div className='heading-container'>
+					<div>
+						<h1>You Are What You Repeatedly Do</h1>
+						<p>routine tracker and habit builder to get you back on track with your life</p>
+					</div>
+					<div>
+						<button onClick={_login}>Get Started</button>
+					</div>
+					<p>created by @limweijen ^_^</p>
+				</div>
+			</div>
+			<footer>
+				<div className='socials'>
+					<div>Lim Wei Jen</div>
+					<div>
+						<p>Follow me on <a href="">Instagram</a></p>
+						<br />
+						<p>Support me on <a href="">Github</a></p>
+						<br />
+						<div>
+							<p>Email</p>
+							<p>limweijen96@gmail.com</p>
+						</div>
+					</div>
+				</div>
+				<div className='banner'>
+					<div className='left'>
+						<img src={logo} alt="logo" />
+						<div>
+							<h1>Route In</h1>
+							<p>You Are What You Repeatedly Do</p>
+						</div>
+					</div>
+					<button onClick={_login}>Get Started</button>
+				</div>
+			</footer>
 		</div>
 	)
 }
