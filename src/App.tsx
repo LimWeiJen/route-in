@@ -52,7 +52,7 @@ function App() {
 					<h1>RouteIn</h1>
 				</div>
 				<div className='right'>
-					<button onClick={_login}>Log In</button>
+					<button className='button' onClick={_login}>Log In</button>
 				</div>
 			</div>
 			<div className='heading'>
@@ -63,7 +63,7 @@ function App() {
 							<p>routine tracker and habit builder to get you back on track with your life</p>
 						</div>
 						<div>
-							<button onClick={_login}>Get Started</button>
+							<button className='button' onClick={_login}>Get Started</button>
 						</div>
 						<p>created by @limweijen ^_^</p>
 					</div>
@@ -95,7 +95,7 @@ function App() {
 							<p>You Are What You Repeatedly Do</p>
 						</div>
 					</div>
-					<button onClick={_login}>Get Started</button>
+					<button className='button' onClick={_login}>Get Started</button>
 				</div>
 			</footer>
 		</div>
