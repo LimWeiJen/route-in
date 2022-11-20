@@ -42,7 +42,7 @@ export const UserProvider = ({children}: any) => {
       taskGroups: newTaskGroups
     })));
 
-    location.reload();
+    window.location.reload();
   }
  
   /**
@@ -70,7 +70,7 @@ export const UserProvider = ({children}: any) => {
 
     // update the user document
     await updateDoc(doc(db, 'users', auth.currentUser.uid), { taskGroups });
-    location.href = '/home';
+    window.location.href = '/home';
   }
 
   /**
@@ -100,7 +100,7 @@ export const UserProvider = ({children}: any) => {
       taskGroups: newTaskGroups
     });
 
-    location.href = `edit-tasks/${emptyTaskGroup.id}`
+    window.location.href = `edit-tasks/${emptyTaskGroup.id}`
   }
 
   /**

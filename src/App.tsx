@@ -32,7 +32,7 @@ function App() {
 			await setDoc(doc(db, 'users', user.uid), newUser);
 		}
 
-		location.href = '/home';
+		window.location.href = '/home';
 	})
 
 	/**

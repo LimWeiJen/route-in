@@ -10,7 +10,7 @@ const TaskGroupList = () => {
   return (
     <div className='wrapper container'>
           {userContext!.taskGroups?.map((taskGroup) => <div className='task'>
-            <div className='left' onClick={() => location.href=`/edit-tasks/${taskGroup.id}`}>
+            <div className='left' onClick={() => window.location.href=`/edit-tasks/${taskGroup.id}`}>
               <div className='square' style={{backgroundColor: `${taskGroup.color}`}}></div>
               <div>
                 {taskGroup.name.toUpperCase()}

@@ -6,26 +6,26 @@ import { LogOut, Settings, Home, User } from 'react-feather'
 import '../styles/sidebar.scss'
 
 const Sidebar = () => {
-  console.log(location.pathname)
+  console.log(window.location.pathname)
   /**
    * @desc logs the user out of the website
    * 
    * @returns void
    */
   const _logout = () => {
-    signOut(auth).then(() => location.href = '/');
+    signOut(auth).then(() => window.location.href = '/');
   }
   
   return (
     <div className='sidebar'>
-      <Link to={'/home'} style={location.pathname === "/home" ? {backgroundColor: '#E73333'} : {}} className='sidebar-btn'>
-        <Home className={`${location.pathname === "/home" ? "ico-active" : ""} ico`} />
+      <Link to={'/home'} style={window.location.pathname === "/home" ? {backgroundColor: '#E73333'} : {}} className='sidebar-btn'>
+        <Home className={`${window.location.pathname === "/home" ? "ico-active" : ""} ico`} />
       </Link>
-      <Link to={'/profile'}style={location.pathname === "/profile" ? {backgroundColor: '#17A1FA'} : {}} className="sidebar-btn">
-        <User className={`${location.pathname === "/profile" ? "ico-active" : ""} ico`} />
+      <Link to={'/profile'}style={window.location.pathname === "/profile" ? {backgroundColor: '#17A1FA'} : {}} className="sidebar-btn">
+        <User className={`${window.location.pathname === "/profile" ? "ico-active" : ""} ico`} />
       </Link>
-      <div className='sidebar-btn'style={location.pathname === "/edit-tasks/default" ? {backgroundColor: '#1BC02C'} : {}} onClick={() => location.href="/edit-tasks/default"}>
-        <Settings className={`${location.pathname === "/edit-tasks/default" ? "ico-active" : ""} ico`} />
+      <div className='sidebar-btn'style={window.location.pathname === "/edit-tasks/default" ? {backgroundColor: '#1BC02C'} : {}} onClick={() => window.location.href="/edit-tasks/default"}>
+        <Settings className={`${window.location.pathname === "/edit-tasks/default" ? "ico-active" : ""} ico`} />
       </div>
       <div className='sidebar-btn' onClick={_logout}>
         <LogOut className='ico' />
