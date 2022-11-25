@@ -1,5 +1,14 @@
 @import './base/reset';
 
+.task-groups-wrapper {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 7rem);
+	padding: 1rem;
+	width: calc(100vw - 10rem);
+	overflow-y: scroll;
+}
+
 .task-group-container {
 	.title {
 		color: white;

@@ -1,19 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { Navbar, Sidebar, TaskGroupEdit, TaskGroupList } from './components';
+import React, { useContext, useState } from 'react'
+import { Navbar, Sidebar, TaskGroupEdit } from './components';
 import { UserContext } from './contexts/UserContext';
 import { TaskGroup } from './interfaces';
+import { Trash } from 'react-feather';
 
 const EditTasks = () => {
   const [currTaskGroup, setCurrTaskGroup] = useState<TaskGroup>();
 
   const userContext = useContext(UserContext);
-
-  // get user's task group by id if the id is provided on load
-  useEffect(() => {
-    const id = window.location.href.replace('http://localhost:3000/edit-tasks/', '');
-    setCurrTaskGroup(userContext!.taskGroups?.filter((taskGroup) => taskGroup.id === id)[0]);
-  })
 
   return (
     <div className={userContext?.theme}>
@@ -22,7 +16,22 @@ const EditTasks = () => {
         <Sidebar />
         {currTaskGroup ? 
           <TaskGroupEdit data={currTaskGroup} /> : 
-          <TaskGroupList />
+          <div>
+            {userContext!.taskGroups?.map((taskGroup) => <div className='task'>
+              <div className='left' onClick={() => setCurrTaskGroup(taskGroup)}>
+                <div className='square' style={{backgroundColor: `${taskGroup.color}`}}></div>
+                <div>
+                  {taskGroup.name.toUpperCase()}
+                </div>
+              </div>
+              <div className='right'>
+                <div className='completion-rate text-secondary'>
+                  {taskGroup.tasks.length} tasks
+                </div>
+                <Trash className='btn' style={{color: '#E73333'}} onClick={() => userContext!.deleteTaskGroup(taskGroup.id)} />
+              </div>
+            </div>)}
+          </div>
         }
       </main>
     </div>

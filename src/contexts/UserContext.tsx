@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { createContext, useState } from 'react'
 import { v4 } from 'uuid';
 import { auth, db } from '../firebase';
@@ -100,7 +100,7 @@ export const UserProvider = ({children}: any) => {
       taskGroups: newTaskGroups
     });
 
-    window.location.href = `edit-tasks/${emptyTaskGroup.id}`
+    window.location.reload()
   }
 
   /**
