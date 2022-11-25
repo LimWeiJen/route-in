@@ -24,9 +24,9 @@ const Sidebar = () => {
       <Link to={'/profile'}style={window.location.pathname === "/profile" ? {backgroundColor: '#17A1FA'} : {}} className="sidebar-btn">
         <User className={`${window.location.pathname === "/profile" ? "ico-active" : ""} ico`} />
       </Link>
-      <div className='sidebar-btn'style={window.location.pathname === "/edit-tasks/default" ? {backgroundColor: '#1BC02C'} : {}} onClick={() => window.location.href="/edit-tasks/default"}>
-        <Settings className={`${window.location.pathname === "/edit-tasks/default" ? "ico-active" : ""} ico`} />
-      </div>
+      <Link to={'/settings'}style={window.location.pathname === "/settings" ? {backgroundColor: '#1BC02C'} : {}} className="sidebar-btn">
+        <Settings className={`${window.location.pathname === "/settings" ? "ico-active" : ""} ico`} />
+      </Link>
       <div className='sidebar-btn' onClick={_logout}>
         <LogOut className='ico' />
       </div>

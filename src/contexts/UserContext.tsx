@@ -135,6 +135,54 @@ export const UserProvider = ({children}: any) => {
     await updateDoc(doc(db, 'users', auth.currentUser.uid), { theme: newTheme });
   }
 
+  /**
+   * @desc deletes all the user's task groups
+   * 
+   * @returns void
+   */
+  const deleteAllTasks = async () => {
+    if (!window.confirm("This will delete all your tasks and all the completion records of your task. This action is irreversible. Are you sure?")) return;
+    if (!auth.currentUser) return;
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      lastLogInDay: 0,
+      taskGroups: [],
+      analytics: {
+        dateOfCreation: new Date().getTime(),
+        completionRateByDay: []
+      }
+    })
+
+    window.location.href = '/home';
+  }
+
+  /**
+   * @desc deletes all the user's completion records
+   * 
+   * @returns void
+   */
+  const resetAllRecords = async () => {
+    if (!window.confirm("This will delete all your completion records of your task. This action is irreversible. Are you sure?")) return;
+    if (!auth.currentUser) return;
+
+    taskGroups?.forEach(taskGroup => {
+      taskGroup.tasks.forEach(task => {
+        task.totalDay = 0;
+        task.totalCompletionDay = 0;
+      })
+    })
+
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), {
+      taskGroups,
+      lastLogInDay: 0,
+      analytics: {
+        dateOfCreation: new Date().getTime(),
+        completionRateByDay: []
+      }
+    })
+
+    window.location.href = '/profile'
+  }
+
   return (
     <UserContext.Provider value={{
       taskGroups,
@@ -146,6 +194,8 @@ export const UserProvider = ({children}: any) => {
       totalDaysPassed,
       theme,
       switchTheme,
+      deleteAllTasks,
+      resetAllRecords
     }}>
       {children}
     </UserContext.Provider>

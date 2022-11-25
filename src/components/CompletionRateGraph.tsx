@@ -28,7 +28,7 @@ const CompletionRateGraph = () => {
 
 	const labels = [];
 	for (let i = userContext?.totalDaysPassed || 0; i > 0; i--) {
-		if (userContext?.totalDaysPassed! - i == 30) break;
+		if (userContext?.totalDaysPassed! - i === 30) break;
 		labels.unshift(`Day ${i}`);
 	}
 	

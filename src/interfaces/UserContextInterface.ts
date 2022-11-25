@@ -10,4 +10,6 @@ export default interface UserContextInterface {
 	switchTheme: (newTheme: 'light' | 'dark') => Promise<void>,
 	totalDaysPassed: number,
 	theme: 'light' | 'dark',
+	deleteAllTasks: () => Promise<void>,
+	resetAllRecords: () => Promise<void>
 }
