@@ -1,0 +1,10 @@
+.settings-title {
+	margin: 1rem;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+.task-group-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}

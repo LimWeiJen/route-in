@@ -1,5 +1,13 @@
 @import './base/reset';
 
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	.task-group-container {
+		margin: 1rem;
+	}
+}
+
 .task {
 	display: flex;
 	justify-content: space-between;

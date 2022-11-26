@@ -5,8 +5,9 @@ import { UserContext } from './contexts/UserContext'
 const Profile = () => {
   const userContext = useContext(UserContext);
 
+  if (userContext?.isBusy) return null;
   return (
-    <div className={userContext?.theme}>
+    <div className={userContext?.styles!.theme}>
       <Navbar />
       <main>
         <Sidebar />

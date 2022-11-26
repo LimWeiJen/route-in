@@ -7,12 +7,16 @@
 .text-secondary {
 	color: $text-secondary;
 }
+.txt-btn {
+	color: $text-secondary;
+	border-color: $text;
+}
 
 .light {
 	body {
 		background-color: $bg;
 	}
-	.text {
+	.text, .txt-btn {
 		color: $text;
 	}
 	.container {
@@ -36,7 +40,8 @@
 	p, h1, h2, h3, div, input {
 		color: $text-dark;
 	}
-	.container, .navbar, .sidebar, .container-secondary, .tasks {
+
+	.container, .navbar, .sidebar, .container-secondary, .tasks, .txt-btn {
 		background-color: $container-dark;
 	}
 	.ico-active {

@@ -2,7 +2,7 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import React, { createContext, useState } from 'react'
 import { v4 } from 'uuid';
 import { auth, db } from '../firebase';
-import { Analytics, Task, TaskGroup, User, UserContextInterface } from '../interfaces';
+import { Analytics, Styles, Task, TaskGroup, User, UserContextInterface } from '../interfaces';
 
 export const UserContext = createContext<UserContextInterface | null>(null);
 
@@ -10,7 +10,11 @@ export const UserProvider = ({children}: any) => {
   const [taskGroups, setTaskGroups] = useState<Array<TaskGroup>>();
   const [analytics, setAnalytics] = useState<Analytics>();
   const [totalDaysPassed, setTotalDaysPassed] = useState(0);
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isBusy, setIsBusy] = useState(true);
+  const [styles, setStyles] = useState<Styles>({
+    taskGroupsDisplay: 'row',
+    theme: 'light'
+  });
 
   // gets the user's data when the user is signed in
   auth.onAuthStateChanged(async (user) => {
@@ -18,10 +22,12 @@ export const UserProvider = ({children}: any) => {
 
     const userDoc = await getDoc(doc(db, 'users', user.uid));
     let userData: User = JSON.parse(JSON.stringify(userDoc.data()));
+
+    setIsBusy(false);
     setTotalDaysPassed(userData.lastLogInDay);
     setTaskGroups(userData.taskGroups);
     setAnalytics(userData.analytics);
-    setTheme(userData.theme);
+    setStyles(userData.styles);
   })
   
   /**
@@ -131,8 +137,28 @@ export const UserProvider = ({children}: any) => {
    */
   const switchTheme = async (newTheme: 'light' | 'dark') => {
     if (!auth.currentUser) return;
-    setTheme(newTheme);
-    await updateDoc(doc(db, 'users', auth.currentUser.uid), { theme: newTheme });
+
+    let newStyles = styles;
+    newStyles!.theme = newTheme;
+
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), { styles: newStyles });
+    window.location.reload();
+  }
+
+  /**
+   * @desc switch the user's preferred task groups display
+   * 
+   * @param newDisplay the new display set by the user
+   * @returns void
+   */
+  const switchTaskGroupsDisplay = async (newDisplay: 'grid' | 'row') => {
+    if (!auth.currentUser) return;
+
+    let newStyles = styles;
+    newStyles!.taskGroupsDisplay = newDisplay;
+
+    await updateDoc(doc(db, 'users', auth.currentUser.uid), { styles: newStyles });
+    window.location.reload();
   }
 
   /**
@@ -161,7 +187,7 @@ export const UserProvider = ({children}: any) => {
    * @returns void
    */
   const resetAllRecords = async () => {
-    if (!window.confirm("This will delete all your completion records of your task. This action is irreversible. Are you sure?")) return;
+    if (!window.confirm("This will delete all the completion records of your task. This action is irreversible. Are you sure?")) return;
     if (!auth.currentUser) return;
 
     taskGroups?.forEach(taskGroup => {
@@ -192,10 +218,12 @@ export const UserProvider = ({children}: any) => {
       addNewTaskGroup,
       toggleChecked,
       totalDaysPassed,
-      theme,
+      styles,
       switchTheme,
       deleteAllTasks,
-      resetAllRecords
+      resetAllRecords,
+      isBusy,
+      switchTaskGroupsDisplay
     }}>
       {children}
     </UserContext.Provider>

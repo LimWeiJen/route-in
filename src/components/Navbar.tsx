@@ -12,16 +12,16 @@ const Navbar = () => {
   return (
     <div className='navbar'>
       <div className='left'>
-        <img src={userContext?.theme === 'light' ? logo : logoDark} />
+        <img alt='logo' src={userContext?.styles!.theme === 'light' ? logo : logoDark} />
         <h1>RouteIn</h1>
       </div>
       <div className='right'>
         <PlusCircle className='nav-btn ico' onClick={userContext?.addNewTaskGroup} />
-        {userContext?.theme === 'light' ? 
-        <ToggleLeft className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext.theme === 'light' ? 'dark' : 'light')} /> : 
-        <ToggleRight className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext.theme === 'light' ? 'dark' : 'light')} />
+        {userContext?.styles!.theme === 'light' ? 
+        <ToggleLeft className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext?.styles!.theme === 'light' ? 'dark' : 'light')} /> : 
+        <ToggleRight className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext?.styles!.theme === 'light' ? 'dark' : 'light')} />
         }
-        <img src={auth.currentUser?.photoURL || ''} />
+        <img alt='logo' src={auth.currentUser?.photoURL || ''} />
       </div>
     </div>
   )

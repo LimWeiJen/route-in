@@ -37,6 +37,7 @@ const CompletionRateGraph = () => {
 		datasets: [
 			{
 				label: 'Completion Rate',
+				lineTension: 0.2,
 				data: analytics?.completionRateByDay.slice(-30),
 				borderColor: 'rgb(255, 99, 132)',
 				backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -44,9 +45,18 @@ const CompletionRateGraph = () => {
 		],
 	};
 
+	const options = {
+		scales: {
+			yAxis: {
+				min: 0,
+				max: 100
+			}
+		},
+	}
+
   return (
     <div>
-			<Line data={data} />
+	<Line data={data} options={options} />
     </div>
   )
 }

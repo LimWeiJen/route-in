@@ -20,11 +20,14 @@ function App() {
 			// initialize a default user object
 			const newUser: User = {
 				lastLogInDay: 0,
-				theme: 'light',
 				taskGroups: [],
 				analytics: {
 					dateOfCreation: new Date().getTime(),
 					completionRateByDay: []
+				},
+				styles: {
+					theme: 'light',
+					taskGroupsDisplay: 'row'
 				}
 			}
 
@@ -48,7 +51,7 @@ function App() {
 		<div className='background'>
 			<div className='navbar'>
 				<div className='left'>
-					<img src={logo} />
+					<img alt='logo' src={logo} />
 					<h1>RouteIn</h1>
 				</div>
 				<div className='right'>
@@ -75,11 +78,11 @@ function App() {
 				<div className='socials'>
 					<div>Lim Wei Jen</div>
 					<div>
-						<p>Follow me on <a href="https://www.instagram.com/limweijen96/" target="_blank">Instagram</a></p>
+						<p>Follow me on <a rel='noreferrer' href="https://www.instagram.com/limweijen96/" target="_blank">Instagram</a></p>
 						<br />
-						<p>Support me on <a href="https://github.com/LimWeiJen" target="_blank">Github</a></p>
+						<p>Support me on <a rel='noreferrer' href="https://github.com/LimWeiJen" target="_blank">Github</a></p>
 						<br />
-						<p>Get in touch with me on <a href="discordapp.com/users/974579792248700938" target="_blank">Discord</a></p>
+						<p>Get in touch with me on <a rel='noreferrer' href="discordapp.com/users/974579792248700938" target="_blank">Discord</a></p>
 						<br />
 						<div>
 							<p>Email</p>
