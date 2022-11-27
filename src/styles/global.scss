@@ -6,6 +6,10 @@
 	font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+body {
+	overflow-x: hidden;
+}
+
 .btn {
 	transition: all 100ms ease-in-out;
 	&:hover {

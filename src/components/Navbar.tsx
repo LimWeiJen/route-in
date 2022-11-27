@@ -21,7 +21,7 @@ const Navbar = () => {
         <ToggleLeft className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext?.styles!.theme === 'light' ? 'dark' : 'light')} /> : 
         <ToggleRight className='nav-btn ico' onClick={() => userContext?.switchTheme(userContext?.styles!.theme === 'light' ? 'dark' : 'light')} />
         }
-        <img alt='logo' src={auth.currentUser?.photoURL || ''} />
+        <img alt='user' src={auth.currentUser?.photoURL || ''} />
       </div>
     </div>
   )

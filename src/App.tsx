@@ -2,10 +2,10 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { auth, db } from './firebase';
 import './styles/global.scss'
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { User } from './interfaces';
 import './styles/homepage.scss'
 import logo from './images/Routine Tracker.svg'
 import backgroundImg from './images/Background Image 2.png'
+import { defaultUserObject } from './constants/defaultUserObjectData';
 
 function App() {
 	auth.onAuthStateChanged(async (user) => {
@@ -16,23 +16,8 @@ function App() {
 	
 		// if the doc does not exist, create a new doc for the user
 		if (!userDoc.exists()) {
-			
-			// initialize a default user object
-			const newUser: User = {
-				lastLogInDay: 0,
-				taskGroups: [],
-				analytics: {
-					dateOfCreation: new Date().getTime(),
-					completionRateByDay: []
-				},
-				styles: {
-					theme: 'light',
-					taskGroupsDisplay: 'row'
-				}
-			}
-
 			// add the user object to user doc
-			await setDoc(doc(db, 'users', user.uid), newUser);
+			await setDoc(doc(db, 'users', user.uid), defaultUserObject);
 		}
 
 		window.location.href = '/home';
@@ -91,7 +76,7 @@ function App() {
 					</div>
 				</div>
 				<div className='banner'>
-					<div className='left'>
+					<div className='banner-left'>
 						<img src={logo} alt="logo" />
 						<div>
 							<h1>Route In</h1>

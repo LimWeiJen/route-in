@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserContext } from '../contexts/UserContext';
 import { Task, TaskGroup } from '../interfaces'
 import { Trash, PlusCircle, Pocket } from 'react-feather';
@@ -60,7 +60,7 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
    * @returns void
    */
   const deleteExistingTask = async (taskIndex: number) => {
-    setNewTasks(newTasks.filter((v, i) => i != taskIndex));
+    setNewTasks(newTasks.filter((v, i) => i !== taskIndex));
   }
 
   /**
@@ -92,14 +92,14 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
     <div className='wrapper'>
       <div>
         <div className='title-container'>
-          <input style={{backgroundColor: newColor}} className='title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
+          <input style={{backgroundColor: newColor}} className='title' placeholder='task group title' type="text" defaultValue={data.name} onChange={e => setNewName(e.target.value)} />
           <input className='color' type="text" defaultValue={data.color} onChange={e => setNewColor(e.target.value)} />
         </div>
         <div className='tasks-container container-secondary'>
           {newTasks.map((task, i) => <div className='task'>
             <div className='left'>
               <div className='square' style={{backgroundColor: newColor}}></div>
-              <input type="text" defaultValue={task.title} onKeyDown={e => {
+              <input type="text" defaultValue={task.title} placeholder='task name' onKeyDown={e => {
                 if (e.key === 'Enter') _addNewTask();
               }} onChange={e => updateExistingTaskTitle(e.target.value, i)} />
             </div>

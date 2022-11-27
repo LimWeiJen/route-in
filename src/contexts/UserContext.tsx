@@ -90,10 +90,10 @@ export const UserProvider = ({children}: any) => {
     // initialize an empty task group
     const emptyTaskGroup: TaskGroup = {
       id: v4(),
-      name: '',
+      name: 'sample task group',
       tasks: [],
-      dayOfAppearance: [false, false, false, false, false, false, false],
-      color: '#fff'
+      dayOfAppearance: [true, true, true, true, true, true, true],
+      color: '#0f0f0f'
     }
 
     // add the new empty task to the task group
@@ -106,7 +106,7 @@ export const UserProvider = ({children}: any) => {
       taskGroups: newTaskGroups
     });
 
-    window.location.reload()
+    window.location.href = '/settings'
   }
 
   /**
