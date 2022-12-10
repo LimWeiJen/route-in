@@ -1,23 +1,44 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../contexts/UserContext';
-import { CheckCircle, Circle } from 'react-feather'
+import { CheckCircle, Circle, EyeOff } from 'react-feather'
 
-const Checkbox = ({defaultChecked, taskGroupId, taskIndex}: {defaultChecked: boolean, taskGroupId: string, taskIndex: number}) => {
-	const [checked, setChecked] = useState(defaultChecked)
+const Checkbox = ({defaultStatus, taskGroupId, taskIndex}: {defaultStatus: 'checked' | 'unchecked' | 'ignored', taskGroupId: string, taskIndex: number}) => {
+	const [status, setStatus] = useState<'checked' | 'unchecked' | 'ignored'>(defaultStatus);
 
 	const userContext = useContext(UserContext);
 
 	const toggleChecked = () => {
-		userContext?.toggleChecked(taskGroupId, taskIndex, !checked);
-		setChecked(!checked);
+		let newStatus = status;
+		switch (status) {
+			case 'checked':
+				setStatus('ignored');
+				newStatus = 'ignored'
+				break;
+		
+			case 'unchecked':
+				setStatus('checked');
+				newStatus = 'checked';
+				break;
+
+			case 'ignored':
+				setStatus('unchecked');
+				newStatus = 'unchecked';
+				break;
+
+			default:
+				break;
+		}
+		userContext?.toggleChecked(taskGroupId, taskIndex, newStatus);
 	}
 
 	return (
     <div className='btn' onClick={toggleChecked}>
-	{checked ? <div>
+	{status === 'checked' ? <div>
 		<CheckCircle className='ico' style={{color: 'green'}} />
-	</div> : <div>
+	</div> : status === 'unchecked' ? <div>
 		<Circle className='ico' />
+	</div> : <div>
+		<EyeOff className='ico' />
 	</div>}
     </div>
   )

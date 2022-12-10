@@ -11,13 +11,15 @@ export const defaultUserObject: User = {
 					title: "Hello there! Welcome to the website! It's nice to have you here!",
 					totalCompletionDay: 0,
 					totalDay: 0,
-					checked: false
+					checked: false,
+					status: 'unchecked'
 				},
 				{
 					title: 'You can edit this task group on the "settings" tab',
 					totalCompletionDay: 0,
 					totalDay: 0,
-					checked: false
+					checked: false,
+					status: 'unchecked'
 				},
 			],
 			dayOfAppearance: [true, true, true, true, true, true, true],
@@ -31,11 +33,13 @@ export const defaultUserObject: User = {
 					title: "You can create a new task group by pressing on the '+' button",
 					totalCompletionDay: 0,
 					totalDay: 0,
-					checked: false
+					checked: false,
+					status: 'unchecked',
 				},
 				{
 					title: 'Once again, you can edit all of your task groups in the "settings" tab',
 					totalCompletionDay: 0,
+					status: 'unchecked',
 					totalDay: 0,
 					checked: false
 				},
@@ -49,6 +53,7 @@ export const defaultUserObject: User = {
 			tasks: [
 				{
 					title: "This task group only appears every Sunday",
+					status: 'unchecked',
 					totalCompletionDay: 0,
 					totalDay: 0,
 					checked: false
@@ -64,6 +69,7 @@ export const defaultUserObject: User = {
 				{
 					title: "Thank you for using this website! For any enquiries, please message me at limweijen96@gmail.com",
 					totalCompletionDay: 0,
+					status: 'unchecked',
 					totalDay: 0,
 					checked: false
 				},

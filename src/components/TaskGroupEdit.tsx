@@ -25,7 +25,8 @@ const TaskGroupEdit = ({data}: {data: TaskGroup}) => {
       title: '',
       totalCompletionDay: 0,
       totalDay: 0,
-      checked: false
+      checked: false,
+      status: 'unchecked'
     }
 
     

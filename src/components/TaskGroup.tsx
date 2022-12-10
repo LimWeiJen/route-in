@@ -1,5 +1,3 @@
-import { UserContext } from '../contexts/UserContext';
-import React, { useContext, useState } from 'react'
 import { TaskGroup as TaskGroupInterface } from '../interfaces'
 import '../styles/taskgroup.scss'
 import Checkbox from './Checkbox';
@@ -18,7 +16,7 @@ const TaskGroup = ({taskGroup}: {taskGroup: TaskGroupInterface}) => {
 					<div className='completion-rate text-secondary'>
 						{(task.totalCompletionDay / task.totalDay * 100).toFixed(2) || 0}
 					</div>
-					<Checkbox defaultChecked={task.checked} taskGroupId={taskGroup.id} taskIndex={j} />
+					<Checkbox defaultStatus={task.status} taskGroupId={taskGroup.id} taskIndex={j} />
 				</div>
 			</div>)}
 		</div>

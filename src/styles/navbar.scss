@@ -38,3 +38,11 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 600px) {
+	.navbar {
+		.left h1 {
+			display: none;
+		}
+	}
+}

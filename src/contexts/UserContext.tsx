@@ -117,12 +117,12 @@ export const UserProvider = ({children}: any) => {
    * @param checked the new value of checked for the task
    * @returns void
    */
-  const toggleChecked = async (taskGroupId: string, taskIndex: number, checked: boolean) => {
+  const toggleChecked = async (taskGroupId: string, taskIndex: number, newStatus: 'checked' | 'unchecked' | 'ignored') => {
     if (!auth.currentUser) return;
 
     taskGroups!.forEach((taskGroup) => {
       if (taskGroup.id === taskGroupId) {
-        taskGroup.tasks[taskIndex].checked = checked;
+        taskGroup.tasks[taskIndex].status = newStatus;
       }
     })
 

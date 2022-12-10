@@ -6,7 +6,7 @@ export default interface UserContextInterface {
 	deleteTaskGroup: (taskGroupId: string) => Promise<void>,
 	saveTaskGroup: (taskGroupId: string, newDayOfAppearance: Array<boolean>, newName: string, newTasks: Array<Task>, newColor: string) => Promise<void>,
   	addNewTaskGroup: () => Promise<void>,
-	toggleChecked: (taskGroupId: string, taskIndex: number, checked: boolean) => Promise<void>,
+	toggleChecked: (taskGroupId: string, taskIndex: number, newStatus: 'checked' | 'unchecked' | 'ignored') => Promise<void>,
 	switchTheme: (newTheme: 'light' | 'dark') => Promise<void>,
 	switchTaskGroupsDisplay: (newDisplay: 'grid' | 'row') => Promise<void>,
 	totalDaysPassed: number,
