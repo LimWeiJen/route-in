@@ -21,3 +21,11 @@
 		}
 	}
 }
+
+@media only screen and (max-width: 600px) {
+	.analytics-wrapper {
+		.top {
+			flex-direction: column;
+		}
+	}
+}

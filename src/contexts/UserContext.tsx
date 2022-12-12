@@ -194,6 +194,8 @@ export const UserProvider = ({children}: any) => {
       taskGroup.tasks.forEach(task => {
         task.totalDay = 0;
         task.totalCompletionDay = 0;
+        task.checked = false;
+        task.status = 'unchecked';
       })
     })
 

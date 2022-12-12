@@ -16,6 +16,7 @@ const EditTasks = () => {
       <Navbar />
       <main>
         <Sidebar />
+        <div className='wrapper'>
         {currTaskGroup ? 
           <TaskGroupEdit data={currTaskGroup} /> : 
           <div>
@@ -49,6 +50,7 @@ const EditTasks = () => {
             </div>
           </div>
         }
+        </div>
       </main>
     </div>
   )
