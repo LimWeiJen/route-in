@@ -1,0 +1,59 @@
+@use '../abstract/colors' as *;
+
+// uniform for both light and dark theme
+.ico {
+	color: $ico;
+}
+.text-secondary {
+	color: $text-secondary;
+}
+.txt-btn {
+	color: $text-secondary;
+	border-color: $text;
+}
+
+.light {
+	body {
+		background-color: $bg;
+	}
+	.text, .txt-btn {
+		color: $text;
+	}
+	.container {
+		background-color: $container;
+	}
+	.ico-active {
+		color: $ico-active
+	}
+	.new-task-btn {
+		background-color: $btn;
+		&:hover {
+			background-color: $btn-hover;
+		}
+	}
+}
+
+.dark {
+	main {
+		background-color: $bg-dark;
+	}
+	p, h1, h2, h3, div, input {
+		color: $text-dark;
+	}
+
+	.container, .navbar, .sidebar, .container-secondary, .tasks, .txt-btn {
+		background-color: $container-dark;
+	}
+	.ico-active {
+		color: $ico-dark-active;
+	}
+	.text-secondary {
+		color: $text-secondary;
+	}
+	.new-task-btn {
+		background-color: $btn-dark;
+		&:hover {
+			background-color: $btn-dark-hover;
+		}
+	}
+}

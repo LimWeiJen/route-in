@@ -1,0 +1,90 @@
+@import './base/reset';
+
+.title-container {
+	.title {
+		font-size: 1rem;
+		width: min-content;
+		border-radius: 10px 10px 0 0;
+		color: white;
+		padding: 0.5rem 0rem;
+		text-align: center;
+	}
+
+	.color {
+		text-align: center;
+	}
+}
+
+.tasks-container {
+	border-radius: 0 10px 10px 10px;
+	background-color: #EDEDED;
+	.task {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		.left {
+			display: flex;
+		}
+	}
+}
+
+.new-task-btn-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.new-task-btn {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		border-radius: 10px;
+		justify-content: center;
+		padding: 1rem 0;
+		&:hover {
+			cursor: pointer;
+		}
+		p {
+			margin-left: 0.3rem;
+		}
+	}
+}
+
+.date-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 2rem 0;
+	.dates {
+		display: flex;
+		div {
+			margin: 1rem;
+			.date-btn {
+				border-radius: 100%;
+				width: 2.5rem;
+				height: 2.5rem;
+				background-color: transparent;
+				border: none;
+				outline: none;
+				&:hover {
+					cursor: pointer;
+					background-color: #D9D9D9;
+				}
+			}
+			.checked {
+				background-color: #afafaf;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.title-container {
+		display: flex;
+	}
+	.date-container {
+		text-align: center;
+		.dates {
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+}
