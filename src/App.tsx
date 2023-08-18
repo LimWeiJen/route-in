@@ -4,7 +4,6 @@ import './styles/global.scss'
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import './styles/homepage.scss'
 import logo from './images/Routine Tracker.svg'
-import backgroundImg from './images/Background Image 2.png'
 import { defaultUserObject } from './constants/defaultUserObjectData';
 
 function App() {
@@ -47,16 +46,28 @@ function App() {
 				<div className='heading-left'>
 					<div className='heading-container'>
 						<div>
-							<h1>You Are What You Repeatedly Do</h1>
-							<p>routine tracker and habit builder to get you back on track with your life</p>
+							<h1>Route In</h1>
+							<p>Routine tracker and habit builder to get you back on track with your life</p>
 						</div>
 						<div>
 							<button className='button' onClick={_login}>Get Started</button>
 						</div>
-						<p>created by @limweijen ^_^</p>
+						<p className='credit'>created by @limweijen ^_^</p>
 					</div>
 				</div>
-				<img className='bg-img' src={backgroundImg} alt="" />
+				<div className='circles'>
+					<div className='circle' style={{top: '1rem', left: '-1rem', width: '5rem', height: '5rem'}}></div>
+					<div className='circle' style={{top: '-2rem', left: '14rem', width: '6rem', height: '6rem'}}></div>
+					<div className='circle' style={{top: '10rem', left: '20rem', width: '10rem', height: '10rem'}}></div>
+					<div className='circle' style={{top: '15rem', left: '-10rem', width: '3rem', height: '3rem'}}></div>
+					<div className='circle' style={{top: '19rem', left: '-39rem', width: '4rem', height: '4rem'}}></div>
+					<div className='circle' style={{top: '7rem', left: '1rem', width: '2rem', height: '2rem'}}></div>
+					<div className='circle' style={{top: '16rem', left: '-29rem', width: '4rem', height: '4rem'}}></div>
+					<div className='circle' style={{top: '21rem', left: '-19rem', width: '8rem', height: '8rem'}}></div>
+					<div className='circle' style={{top: '14rem', left: '-10rem', width: '54rem', height: '54rem'}}></div>
+					<div className='circle' style={{top: '5rem', left: '-22rem', width: '7rem', height: '7rem'}}></div>
+					<div className='circle' style={{top: '1rem', left: '-15rem', width: '5rem', height: '5rem'}}></div>
+				</div>
 			</div>
 			<div className='divider'></div>
 			<footer>
